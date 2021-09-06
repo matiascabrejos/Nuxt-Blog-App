@@ -3,31 +3,18 @@
     <section class="intro">
       <h1>Get the latest tech news!</h1>
     </section>
-    <section class="featured-posts">
-      <nuxt-link :to="'/posts/' + 1" class="post-preview">
-      <article>
-        <div class="post-thumbnail" style="background-image:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80')"></div>
-        <div class="post-content">
-          <h1>Post Title</h1>
-          <p>Preview Text</p>
-        </div>
-      </article>
-      </nuxt-link>
-      <nuxt-link :to="'/posts/' + 2" class="post-preview">
-      <article>
-        <div class="post-thumbnail" style="background-image:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80')"></div>
-        <div class="post-content">
-          <h1>Post Title 2</h1>
-          <p>Preview Text 2</p>
-        </div>
-      </article>
-      </nuxt-link>
-    </section>
+    <PostList />
   </div>
 </template>
 
 <script>
-export default {}
+import PostList from "~/components/posts/PostList";
+
+export default {
+  components: {
+    PostList
+  }
+};
 </script>
 
 <style scoped>
@@ -36,6 +23,7 @@ export default {}
   position: relative;
   padding: 30px;
   box-sizing: border-box;
+  background-image: url("~assets/images/main-page-background.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -58,50 +46,5 @@ export default {}
   .intro h1 {
     font-size: 2rem;
   }
-}
-
-.featured-posts {
-  display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: white;
-  width: 90%;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-@media (min-width: 850px) {
-  .post-preview {
-    width: 400px;
-    margin: 10px;
-  }
-}
-
-.post-thumbnail {
-  width: 100%;
-  height: 200px;
-  background-position: center;
-  background-size: cover;
-}
-
-.post-content {
-  padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
 }
 </style>
