@@ -1,18 +1,46 @@
 <template>
-    <div class="single-post-page">
-        <section class="post">
-            <h1 class="post-title">Title of the Post</h1>
-            <div class="post-details">
-                <div class="post-detail">Last updated on XXX</div>
-                <div class="post-detail">Written by NAME</div>
-            </div>
-            <p class="post-content">Content of the post</p>
-        </section>
-        <section class="post-feedback">
-            <p>Let me know what you think about the post, send a mail to <a href="mailto:feedback@my-awesome-domain.com">feedback@my-awesome-domain.com</a>.</p>
-        </section>
-    </div>
+  <div class="single-post-page">
+    <section class="post">
+      <h1 class="post-title">{{ loadedPosts.title }}</h1>
+      <div class="post-details">
+        <div class="post-detail">
+          Last updated on {{ loadedPosts.updatedDate }}
+        </div>
+        <div class="post-detail">Written by {{ loadedPosts.author }}</div>
+      </div>
+      <p class="post-content">{{ loadedPosts.content }}</p>
+    </section>
+    <section class="post-feedback">
+      <p>
+        Let me know what you think about the post, send a mail to
+        <a href="mailto:feedback@my-awesome-domain.com"
+          >feedback@my-awesome-domain.com</a
+        >.
+      </p>
+    </section>
+  </div>
 </template>
+
+<script>
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPosts: {
+          id: "1",
+          title: "First Post (ID: " + context.route.params.id + ')',
+          previewText: "Some amazing content",
+          author: 'Matías Cabrejos',
+          updatedDate: new Date(),
+          content: 'Some content thats not the preview text',
+          thumbnail:
+            'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'
+        }
+      });
+    }, 1000);
+  }
+};
+</script>
 
 <style scoped>
 .single-post-page {
