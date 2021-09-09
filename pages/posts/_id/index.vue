@@ -28,13 +28,13 @@ export default {
       callback(null, {
         loadedPosts: {
           id: "1",
-          title: "First Post (ID: " + context.route.params.id + ')',
+          title: "First Post (ID: " + context.route.params.id + ")",
           previewText: "Some amazing content",
-          author: 'Matías Cabrejos',
+          author: "Matías Cabrejos",
           updatedDate: new Date(),
-          content: 'Some content thats not the preview text',
+          content: "Some content thats not the preview text",
           thumbnail:
-            'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'
+            "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
         }
       });
     }, 1000);
