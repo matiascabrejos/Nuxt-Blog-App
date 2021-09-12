@@ -1,7 +1,7 @@
 <template>
   <div class="admin-post-page">
     <section class="update-form">
-      <AdminPostForm :post="loadedPost" />
+      <AdminPostForm :post="loadedPost" @submit="onSubmitted" />
     </section>
   </div>
 </template>
@@ -14,16 +14,30 @@ export default {
   components: {
     AdminPostForm
   },
-  data() {
-    return {
-      loadedPost: {
-        author: "Matias Cabrejos",
-        title: "My Post",
-        content: "Amazing content xD",
-        thumbnailLink:
-          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29kaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-      }
-    };
+    asyncData(context) {
+    return axios
+      .get(
+        "https://nuxt-blog-1474b-default-rtdb.firebaseio.com/posts/" +
+          context.route.params.postId +
+          ".json"
+      )
+      .then(res => {
+        return {
+          loadedPosts: res.data
+        };
+      })
+      .catch(e => context.error(e));
+  },  
+  methods: {
+    onSubmitted(editedPost) {
+      axios.put("https://nuxt-blog-1474b-default-rtdb.firebaseio.com/posts/" +
+          this.$route.params.postId +
+          ".json", editedPost)
+          .then(res => {
+            this.$router.push('/admin')
+          })
+          .catch(e => console.log(e))
+    }
   }
 };
 </script>

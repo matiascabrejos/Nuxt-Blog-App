@@ -22,7 +22,7 @@ export default {
           "https://nuxt-blog-1474b-default-rtdb.firebaseio.com/posts.json",
           { ...postData, updatedDate: new Date() }
         )
-        .then(response => console.log(response))
+        .then(response => this.$router.push('/admin'))
         .catch(e => console.log(e));
     }
   }
