@@ -29,7 +29,7 @@ export default {
     return axios
       .get(
         "https://nuxt-blog-1474b-default-rtdb.firebaseio.com/posts/" +
-          context.route.params.id +
+          context.params.id +
           ".json"
       )
       .then(res => {
